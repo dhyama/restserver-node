@@ -20,6 +20,11 @@ git push --tags							-> Subimos los tags de la release que hemos generado a Git
 
 - En la web de github del proyecto en la parte de code->release podemos encontrar los tags, lo podemos editar y dar formato para publicarlo.
 
+- En el caso de no haber incluido en el gitignore la carpeta de node_modules para excluirlo ejecutamos
+git rm -r --cached node_modules
+git commit -m 'Remove the now ignored directory node_modules'
+git push origin master
+
 Publicar en Heroku
 ============================
 heroku login                            -> Esto solo es necesario una vez en cada máquina
