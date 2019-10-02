@@ -1,6 +1,6 @@
 Comandos de Git
 ============================
-- Creamos un archivo README.md para poder visualizarlo en el Git (web)
+- Creamos un archivo README.md para poder visualizarlo en github (web)
 - Generamos el fichero .gitignore donde indicaremos los ficheros que queremos excluir del control de código.
 
 git init								-> Inicializamos el directorio de trabajo para trabajar con Git, lo tenemos que ejecutar en el pad del proyecto.
@@ -20,7 +20,10 @@ git push --tags							-> Subimos los tags de la release que hemos generado a Git
 
 - En la web de github del proyecto en la parte de code->release podemos encontrar los tags, lo podemos editar y dar formato para publicarlo.
 
-- En el caso de no haber incluido en el gitignore la carpeta de node_modules para excluirlo ejecutamos
+- Cuando estamos actualizando el repositorio de git podemos hacer el add y el comit en la misma línea para los fichero a los que ya estamos haciendo Seguimiento
+git commit -am "Actualización"			-> Creamos el commit de actualización con los ficheros en seguimiento.
+
+- En el caso de no haber incluido en el fichero .gitignore la carpeta de node_modules para excluirlo ejecutamos:
 git rm -r --cached node_modules
 git commit -m 'Remove the now ignored directory node_modules'
 git push origin master
@@ -28,7 +31,18 @@ git push origin master
 Publicar en Heroku
 ============================
 heroku login                            -> Esto solo es necesario una vez en cada máquina
+
+- Podemos generar el repositorio desde la web de heroku con los que los pasos serian los siguientes
+
 heroku git:remote -a dhyama-webpage     -> desplegamos repositorio de git a Heroku
 git push heroku master                  -> Subimos nuestro repositorio de git a Heroku
 heroku open                             -> Abrimos en el navegador la aplicación desplegada en Heroku
 heroku git:clone -a dhyama-webpage      -> Comando con el que podermos obtener el código del proyecto subido en formato git (Heroku es un repositorio git tambien)
+
+- Podemos crear el repositorio desde la consola, por lo que los pasos serían los siguientes
+heroku create -h                        -> nos muestra la ayuda para la creación del repositorio
+heroku create                           -> creara el repositorio y si no indicamos nombre nos lo generará el automáticamente, esto afecta a nustro repositorio de git (mejor poner nombre)
+git remote                              -> nos indica si tenemos un repositorio creado ya en heroku
+git remote -v                           -> nos indica las ubicaciones de todos nuestros repositorios del proyecto
+git push heroku master                  -> Subimos nuestro repositorio de git a Heroku
+heroku open                             -> Abrimos en el navegador la aplicación desplegada en Heroku
