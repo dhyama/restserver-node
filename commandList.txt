@@ -46,3 +46,7 @@ git remote                              -> nos indica si tenemos un repositorio 
 git remote -v                           -> nos indica las ubicaciones de todos nuestros repositorios del proyecto
 git push heroku master                  -> Subimos nuestro repositorio de git a Heroku
 heroku open                             -> Abrimos en el navegador la aplicación desplegada en Heroku
+
+MongoDB
+=============================
+"C:\Program Files\MongoDB\Server\4.2\bin\mongo.exe" -> Inicializamos el servicio de base de datos Mongo

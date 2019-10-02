@@ -19,3 +19,15 @@ server/server.js
 
 - Instalamos el paquete body-parser para poder precesar los datos de las cabeceras de nuestro servicios
 npm install body-parser --save
+
+- Instalamos el paquete para la conexión con las BD de MongoDB
+npm i mongoose --save
+
+- Instalamos el paquete para colores en consola
+npm install colors --save
+
+- Creamos una carpeta donde tendremos definidos todos los controladores o rutas de acceso a nuestro servicio resto
+routes/usuario.js
+
+- Creamos una carpeta donde tendremos definidos todos los modelos de datos de nuestra base de datos de MongoDB
+models/usuario.js
