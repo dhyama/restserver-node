@@ -1,0 +1,12 @@
+/************************************
+*    Documentación del proyecto     *
+*************************************
+
+- Inicialización del proyecto para la creación del fichero package.json
+npm init
+
+- Instalamos el paquete Express para la generación de servicios (Documentacion -> https://www.npmjs.com/package/express)
+npm install express --save
+
+- Creamos un carpeta especial para el los ficheros del servidor separado del resto de aplicación (Es una buena practica para aplicaciones grandes)
+server/server.js

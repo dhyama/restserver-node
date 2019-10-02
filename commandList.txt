@@ -1,0 +1,29 @@
+Comandos de Git
+============================
+- Creamos un archivo README.md para poder visualizarlo en el Git (web)
+- Generamos el fichero .gitignore donde indicaremos los ficheros que queremos excluir del control de código.
+
+git init								-> Inicializamos el directorio de trabajo para trabajar con Git, lo tenemos que ejecutar en el pad del proyecto.
+git status								-> Obtenemos el estado en el que se encuentra el proyecto (Cambios -> fichero en rojo).
+git add .								-> Generamos un fotografía del estado actual del proyecto (Generamos el Stage).
+git status								-> Obtenemos el estado en el que se encuentra el proyecto (Seguimiento -> ficheros en verde (Stage)).
+git commit -m "Commit Inicial"			-> Creamos el commit inicial con el estado del proyecto.
+
+- Hasta este momento todo esta en local.
+
+git remote add origin https://github.com/dhyama/clima-node.git	->Indicamos cual es el servidor y repositorio remoto donde vamos a subir el proyecto.
+git push -u origin master				-> Subimos el commit inicial a la rama master del proyecto.
+
+git tag -a v1.0.0 -m "Primera versión"	-> Generamos un tag para la release y poder descargar todo el proyecto tal cual se encuentra en este momento.
+git tag									-> Comprobar la versión en la que nos encontramos.
+git push --tags							-> Subimos los tags de la release que hemos generado a Git
+
+- En la web de github del proyecto en la parte de code->release podemos encontrar los tags, lo podemos editar y dar formato para publicarlo.
+
+Publicar en Heroku
+============================
+heroku login                            -> Esto solo es necesario una vez en cada máquina
+heroku git:remote -a dhyama-webpage     -> desplegamos repositorio de git a Heroku
+git push heroku master                  -> Subimos nuestro repositorio de git a Heroku
+heroku open                             -> Abrimos en el navegador la aplicación desplegada en Heroku
+heroku git:clone -a dhyama-webpage      -> Comando con el que podermos obtener el código del proyecto subido en formato git (Heroku es un repositorio git tambien)
