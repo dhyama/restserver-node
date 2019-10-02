@@ -10,3 +10,12 @@ npm install express --save
 
 - Creamos un carpeta especial para el los ficheros del servidor separado del resto de aplicación (Es una buena practica para aplicaciones grandes)
 server/server.js
+
+- Creamos los metodos http que se necesitan para la gestión del servicios
+    * GET para la obtención de datos
+    * POST para la creación de nuevos datos
+    * PUT/PATCH para la actualización de datos
+    * DELETE para marcar como borrado un registro (En BD ya no se borran los datos, se marcan como no disponibles)
+
+- Instalamos el paquete body-parser para poder precesar los datos de las cabeceras de nuestro servicios
+npm install body-parser --save
