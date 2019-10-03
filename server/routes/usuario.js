@@ -34,7 +34,7 @@ app.post('/usuario', function(req, res) {
         if (err) {
             return res.status(400).json({ //Generamos un código de error y un mensaje que se mostrata en la respuesta http, ponemos el return para salir de la ejecución en caso de error
                 ok: false,
-                mensaje: 'El nombre es necesario'
+                err
             });
         }
 

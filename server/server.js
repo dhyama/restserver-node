@@ -27,7 +27,8 @@ app.use(require('./routes/usuario'));
 //Configuramos la conexion con la base de datos
 mongoose.connect('mongodb://localhost:27017/cafe', {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     },
     (err, res) => {
         if (err) {
