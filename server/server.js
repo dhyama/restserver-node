@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 //Importamos la libreria para procesar los datos de cabeceras de las llamadas al servicio
 const bodyParser = require('body-parser');
 
-//Creamos la constante donde almacenaremos el servicio REST
+//Creamos la constante donde almacenaremos el servicio REST de Express
 const app = express();
 
 //Incluimos los middelwares para el procesamineto de cabeceras (cuando encontramos un app.use es un middleware)
@@ -21,14 +21,15 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-//Cargamos las rutas de de aceso a los controladores del servicio de Usuario definidas en el fichero
+//Cargamos los controladores del servicio de Usuario definidas en el fichero usuario.js
 app.use(require('./routes/usuario'));
 
 //Configuramos la conexion con la base de datos
 mongoose.connect('mongodb://localhost:27017/cafe', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
     },
     (err, res) => {
         if (err) {

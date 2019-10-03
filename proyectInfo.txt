@@ -5,7 +5,7 @@
 - Inicialización del proyecto para la creación del fichero package.json
 npm init
 
-- Instalamos el paquete Express para la generación de servicios (Documentacion -> https://www.npmjs.com/package/express)
+- Instalamos el paquete Express para la generación de servicios (Documentación -> https://www.npmjs.com/package/express)
 npm install express --save
 
 - Creamos un carpeta especial para el los ficheros del servidor separado del resto de aplicación (Es una buena practica para aplicaciones grandes)
@@ -31,3 +31,12 @@ routes/usuario.js
 
 - Creamos una carpeta donde tendremos definidos todos los modelos de datos de nuestra base de datos de MongoDB
 models/usuario.js
+
+- Instalamos el paquete para validación de datos para la BD MondoDB (Documentación -> https://www.npmjs.com/package/mongoose-unique-validator)
+npm i mongoose-unique-validator --save
+
+- Instalamos el paquete para encriptación de contraseñas (Hash de una sola via)
+npm i bcrypt --save
+
+- Instalamos la libreria uderscore que amplia enormemente las funcionalidades de javascript (Documentación -> https://underscorejs.org/)
+npm install underscore --save

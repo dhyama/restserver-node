@@ -44,13 +44,28 @@ let usuarioSchema = new Schema({
         type: Boolean,
         default: true
     },
-    goolge: {
+    google: {
         type: Boolean,
         default: false
     }
 });
 
-//Indicamos al esquema que plugin tiene que usar y el formato del mensaje
+//Vamos a modificar el metodo toJSON del esquema para eliminar en la salida el campo password,
+// ya que es el que utilizamos normalmente para la salida de datos
+// es como modificar un prototipo de las clases de javascript
+usuarioSchema.methods.toJSON = function() {
+    //No utilizamos función de flecha ya que necesitamos utilizar el this.
+    // almacenamos lo que tenemos en la función en ese momento en un objeto usuario
+    let user = this;
+    //Creamos un objeto clon para poderlo modificar
+    let userObject = user.toObject();
+    //Eliminamos la propiedad del objeto clonado
+    delete userObject.password;
+    //Devolvemos el objeto usuario sin password
+    return userObject;
+}
+
+//Indicamos al esquema que plugin tiene que usar y el formato del mensaje en caso de error
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único.' })
 
 //Exportamos el esquema con el nombre 'Usuario'
