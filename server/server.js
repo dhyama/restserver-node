@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuario'));
 
 //Configuramos la conexion con la base de datos
-mongoose.connect('mongodb://localhost:27017/cafe', {
+mongoose.connect(process.env.URLDB, { //'mongodb://localhost:27017/cafe' Esta variable la hemos configurado en el fichero de configuración
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,

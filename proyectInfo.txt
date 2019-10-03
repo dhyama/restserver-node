@@ -1,6 +1,10 @@
 /************************************
 *    Documentación del proyecto     *
 *************************************
+- Generamos una cuenta en Github para tener nuestro codigo seguro en la nuve
+    https://github.com
+
+    usuario : dhyama@gmail.com
 
 - Inicialización del proyecto para la creación del fichero package.json
 npm init
@@ -35,8 +39,27 @@ models/usuario.js
 - Instalamos el paquete para validación de datos para la BD MondoDB (Documentación -> https://www.npmjs.com/package/mongoose-unique-validator)
 npm i mongoose-unique-validator --save
 
-- Instalamos el paquete para encriptación de contraseñas (Hash de una sola via)
+- Instalamos el paquete para encriptación de contraseñas (Hash de una sola via) (Documentaciín -> https://www.npmjs.com/package/bcrypt)
 npm i bcrypt --save
 
 - Instalamos la libreria uderscore que amplia enormemente las funcionalidades de javascript (Documentación -> https://underscorejs.org/)
 npm install underscore --save
+
+- Generamos una cuenta en Mongo Atlas para poder tener nuestra BD en la nuve
+    https://www.mongodb.com/cloud/atlas
+
+    usuario : dhyama@gmail.com
+
+    Creamos un cluster free 
+    -Cluster0   usuario admin : dhyama , password : DJef7jwKOMdlrKP4
+
+    Creamos una base de datos llamada 'cafe' en la colección del cluster
+
+    -Conectamos Compass con el cluster de Atlas
+    mongodb+srv://dhyama:DJef7jwKOMdlrKP4@cluster0-gqumd.mongodb.net/cafe
+
+
+- Generamos una cuenta en Heroku para poder tener nuestra aplicación en la nuve
+    https://dashboard.heroku.com
+
+    usuario : dhyama@gmail.com
