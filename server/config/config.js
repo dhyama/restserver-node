@@ -23,7 +23,9 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/cafe';
 } else {
-    urlDB = 'mongodb+srv://dhyama:DJef7jwKOMdlrKP4@cluster0-gqumd.mongodb.net/cafe';
+    //Primero debemos generar una variable de entorno en heroku (heroku config:set MONGO_URI="mongodb+srv://dhyama:<XXXXXXX>@cluster0-gqumd.mongodb.net/cafe")
+    // de esta manera no tenemos publicado en nuestro repositorio público la cadena de conexión a la BD de Atlas, ya que esta en heroku almacenada
+    urlDB = process.env.MONGO_URI;
 }
 
 //Generamos nuestra propia variable de entorno URLDB y la inicializamos con el valor obtenido

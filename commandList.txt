@@ -47,10 +47,19 @@ git remote -v                           -> nos indica las ubicaciones de todos n
 git push heroku master                  -> Subimos nuestro repositorio de git a Heroku
 heroku open                             -> Abrimos en el navegador la aplicación desplegada en Heroku
 
+Variables configuración Heroku
+==============================
+heroku config                           -> Muestra las cariables de configuración de heroku
+heroku config:set nombre="Miguel Ángel" -> Crea una variable de configuración de heroku llamada nombre y con valor "Miguel Ángel"
+heroku config:get nombre                -> Obtenemos el valor de una variable de configuración
+heroku config:unset nombre              -> Borramos la variable de configuración de Heroku
+
+heroku config:set MONGO_URI="mongodb+srv://dhyama:DJef7jwKOMdlrKP4@cluster0-gqumd.mongodb.net/cafe"
+
 MongoDB
-=============================
+==============================
 "C:\Program Files\MongoDB\Server\4.2\bin\mongo.exe" -> Inicializamos el servicio de base de datos Mongo
 
 NPM
-=============================
+==============================
 npm update                              -> Actualiza todos los paquetes que tenemos instalados incluso el propio npm
