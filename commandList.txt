@@ -55,6 +55,7 @@ heroku config:get nombre                -> Obtenemos el valor de una variable de
 heroku config:unset nombre              -> Borramos la variable de configuración de Heroku
 
 heroku config:set MONGO_URI="mongodb+srv://dhyama:DJef7jwKOMdlrKP4@cluster0-gqumd.mongodb.net/cafe"
+heroku config:set SEED="este-es-el-seed-produccion"
 
 MongoDB
 ==============================

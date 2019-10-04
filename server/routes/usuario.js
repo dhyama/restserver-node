@@ -13,13 +13,22 @@ const _ = require('underscore');
 //Importamos el esquema que hemos generado
 const Usuario = require('../models/usuario'); //Por convención se pone en mayuscula ya que vamos a generar objetos con new
 
+//Importamos la funcionalidad de verificación de tokens, podemos importar la libreria al completo como en la linea de arriba, o solo la función que queremos como en este caso
+const { verificaToken } = require('../middlewares/autenticacion');
+
 //Creamos la constante donde almacenaremos el servicio REST de la librería Express
 const app = express();
 
 /**
  * Controlador mediante la que obtenemos los registros de usuario de la BD
  */
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verificaToken, (req, res) => { //En el segundo parámetro estamos indicando cual es el middleware que se va a ejecutar paravalidar esta función
+
+    //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
+    let usuarioLogin = {
+        userLogin: req.usuario
+    }
+
     //Para realizar paginación de datos obtenemos los parámetros desde la entrada, sino los ponemos por defecto
     let desde = req.query.desde || 0;
     desde = Number(desde); //Falta validación de número
@@ -46,6 +55,7 @@ app.get('/usuario', function(req, res) {
                 //Devolvemos el listado de usuarios obtenidos con la función find más el conteo de los mismos
                 res.json({
                     ok: true,
+                    usuarioLogin,
                     cuantos: conteo,
                     usuarios
                 });
@@ -56,7 +66,12 @@ app.get('/usuario', function(req, res) {
 /**
  * Controlador mediante la que creamos un registro de usuario de la BD
  */
-app.post('/usuario', function(req, res) {
+app.post('/usuario', verificaToken, (req, res) => {
+
+    //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
+    let usuarioLogin = {
+        userLogin: req.usuario
+    }
 
     //Recogemos el valor de la cabecera de la llamada
     let usuarioParam = req.body;
@@ -84,6 +99,7 @@ app.post('/usuario', function(req, res) {
         //Si llegamos aquí es por que no nos hemos salido por el return del error y devolvemos un json con el usuario guardado
         res.json({
             ok: true,
+            usuarioLogin,
             usuario: usuarioDB
         });
     });
@@ -92,7 +108,13 @@ app.post('/usuario', function(req, res) {
 /**
  * Controlador mediante la que actualizamos un registro de usuario de la BD
  */
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', verificaToken, (req, res) => {
+
+    //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
+    let usuarioLogin = {
+        userLogin: req.usuario
+    }
+
     //Obtenemos el parametro id de la llamada
     let id = req.params.id;
     //Obtenemos el cuerpo de la llamada
@@ -121,6 +143,7 @@ app.put('/usuario/:id', function(req, res) {
         //Devolevemos el resultado y el usuario en el formato json
         res.json({
             ok: true,
+            usuarioLogin,
             usuario: usuarioDB
         });
     });
@@ -129,7 +152,13 @@ app.put('/usuario/:id', function(req, res) {
 /**
  * Controlador mediante el que marcamos como borrado un registro de usuario de la BD
  */
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', verificaToken, (req, res) => {
+
+    //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
+    let usuarioLogin = {
+        userLogin: req.usuario
+    }
+
     //Obtenemos el parametro id de la llamada
     let id = req.params.id;
 
@@ -152,6 +181,7 @@ app.delete('/usuario/:id', function(req, res) {
         //Devolevemos el resultado y el usuario borrado en el formato json
         res.json({
             ok: true,
+            usuarioLogin,
             usuario: usuarioBorrado
         });
     });
@@ -160,7 +190,13 @@ app.delete('/usuario/:id', function(req, res) {
 /**
  * Controlador mediante el que borramos físicamente un registro de usuario de la BD
  */
-app.delete('/usuario/:id/remove', function(req, res) {
+app.delete('/usuario/:id/remove', verificaToken, (req, res) => {
+
+    //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
+    let usuarioLogin = {
+        userLogin: req.usuario
+    }
+
     //Obtenemos el parametro id de la llamada
     let id = req.params.id;
 
@@ -188,6 +224,7 @@ app.delete('/usuario/:id/remove', function(req, res) {
         //Devolevemos el resultado y el usuario borrado en el formato json
         res.json({
             ok: true,
+            usuarioLogin,
             usuario: usuarioBorrado
         });
     });

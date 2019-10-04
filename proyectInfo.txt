@@ -39,7 +39,7 @@ models/usuario.js
 - Instalamos el paquete para validación de datos para la BD MondoDB (Documentación -> https://www.npmjs.com/package/mongoose-unique-validator)
 npm i mongoose-unique-validator --save
 
-- Instalamos el paquete para encriptación de contraseñas (Hash de una sola via) (Documentaciín -> https://www.npmjs.com/package/bcrypt)
+- Instalamos el paquete para encriptación de contraseñas (Hash de una sola via) (Documentación -> https://www.npmjs.com/package/bcrypt)
 npm i bcrypt --save
 
 - Instalamos la libreria uderscore que amplia enormemente las funcionalidades de javascript (Documentación -> https://underscorejs.org/)
@@ -63,3 +63,19 @@ npm install underscore --save
     https://dashboard.heroku.com
 
     usuario : dhyama@gmail.com
+
+- Trabajaremos con tokens para la validación de usuarios en nuestra aplicación (Documentación - > https://jwt.io/)
+
+    //Código para decodificar el token generado en jwt
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
+
+    Los tokens almacenados en una máquina los podemos ver en las herramientas de desarrollo de google->Application->Local Storage
+
+-Instalamos la libreria para la generación de tokens (Documentación -> https://www.npmjs.com/package/jsonwebtoken)
+npm install jsonwebtoken --save
+
+    - Mediante la función de login generamos un token que configuramos en postman como variable de entorno para utilizar en las llamadas al servicio

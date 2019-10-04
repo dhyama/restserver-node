@@ -21,8 +21,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-//Cargamos los controladores del servicio de Usuario definidas en el fichero usuario.js
-app.use(require('./routes/usuario'));
+
+// //Cargamos los controladores del servicio de Usuario definidas en el fichero usuario.js
+// app.use(require('./routes/usuario'));
+// //Cargamos los controladores del servicio de Login definidas en el fichero login.js
+// app.use(require('./routes/login'));
+//Trasladamos esta configuración de controladores al fichero index.js
+app.use(require('./routes/index'));
+
 
 //Configuramos la conexion con la base de datos
 mongoose.connect(process.env.URLDB, { //'mongodb://localhost:27017/cafe' Esta variable la hemos configurado en el fichero de configuración
