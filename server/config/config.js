@@ -28,16 +28,21 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URI;
 }
 
+//Generamos nuestra propia variable de entorno URLDB y la inicializamos con el valor obtenido
+process.env.URLDB = urlDB;
+
 //=====================
 //Vencimiento token
 //=====================
 // 60 segundos * 60 minutos * 24 horas * 30 días
 process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
 
-//=====================
+//=========================
 //Semilla de autenticación
-//=====================
+//=========================
 process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo'; //Generamos una variable en Heroku con la SEED para que esta no esté pública en github
 
-//Generamos nuestra propia variable de entorno URLDB y la inicializamos con el valor obtenido
-process.env.URLDB = urlDB;
+//=========================
+//Google CLien ID
+//=========================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '263151479469-4u8c04vnvo4e97d44hn7t70362a284ma.apps.googleusercontent.com';

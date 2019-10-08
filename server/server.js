@@ -12,6 +12,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 //Importamos la libreria para procesar los datos de cabeceras de las llamadas al servicio
 const bodyParser = require('body-parser');
+//Importamos el paquete para trabajar con rutas (viene instalado)
+const path = require('path');
 
 //Creamos la constante donde almacenaremos el servicio REST de Express
 const app = express();
@@ -21,6 +23,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+// habilitamos la carpeta public como accesible para los usuarios
+app.use(express.static(path.resolve(__dirname, '../public')));
+// console.log(path.resolve(__dirname, '../public'));
 
 // //Cargamos los controladores del servicio de Usuario definidas en el fichero usuario.js
 // app.use(require('./routes/usuario'));
@@ -28,7 +33,6 @@ app.use(bodyParser.json());
 // app.use(require('./routes/login'));
 //Trasladamos esta configuración de controladores al fichero index.js
 app.use(require('./routes/index'));
-
 
 //Configuramos la conexion con la base de datos
 mongoose.connect(process.env.URLDB, { //'mongodb://localhost:27017/cafe' Esta variable la hemos configurado en el fichero de configuración

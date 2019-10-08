@@ -79,3 +79,26 @@ npm install underscore --save
 npm install jsonwebtoken --save
 
     - Mediante la función de login generamos un token que configuramos en postman como variable de entorno para utilizar en las llamadas al servicio
+    - Función que añadimos a postman para actualizar los tokens del login en las variable globales, esta se incluye en la pestaña de test
+        let resp = pm.response.json();
+        let token;
+        if (resp.ok) {
+            token = resp.token; 
+            pm.environment.set("token", token);
+        }else{
+            console.log('No se actualizó el token');
+        }
+
+- Creamos un proyecto de Google Sing-in para nuestra aplicación web.
+    https://developers.google.com/identity/sign-in/web/sign-in
+
+    usuario : dhyama@gmail.com
+    proyecto: dhyamasingin
+    OAuth   : Web browser
+    Authorized Javascript Origin : http://localhost
+    ClientID : 263151479469-4u8c04vnvo4e97d44hn7t70362a284ma.apps.googleusercontent.com
+    Client Secret : Uoj5sywXo6RjCEoOQhSVb8VX
+
+    https://console.developers.google.com/apis/dashboard?authuser=0&project=dhyamasingin-1570524859327
+
+

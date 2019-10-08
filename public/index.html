@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Sing-In Demo</title>
+
+    <!-- Importamos el api de google para incoporar el sing-in a nuestra web -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Incorporamos la información de nuestro proyecto de sing-in que encontramos en la consola de desarrollador de google -->
+    <meta name="google-signin-client_id" content="263151479469-4u8c04vnvo4e97d44hn7t70362a284ma.apps.googleusercontent.com">
+
+</head>
+
+<body>
+    <!-- Añadimos el botón de Sing-in -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <!-- Añadimos el botón de Sing-out -->
+    <a href="#" onclick="signOut();">Sign out</a>
+
+    <!-- Añadimos las funciones asociadas a los botones indicadas en las ayuda de google -->
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log(id_token);
+
+            // Llamada ajax para validación del token, si utilizamos algún framework podemos utilizarlo para lanzar la llamada
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/logingoogle');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                console.log('Signed in as: ' + xhr.responseText);
+            };
+            xhr.send('idtoken=' + id_token);
+        }
+    </script>
+</body>
+
+</html>
