@@ -31,15 +31,41 @@ let verificaToken = (req, res, next) => {
 
         //En el decoded tenemos la información decodificada del PAYLOAD (Un token se divide en HEADER,PAYLOAD,SIGNATURE)
         // por lo que devolvemos la información decodificada del usuario
-        req.usuario = decode.usuario
-            //Proseguimos con la ejecución de la aplicación
+        req.usuario = decode.usuario;
+        //Proseguimos con la ejecución de la aplicación
         next();
 
     });
 
 }
 
+//=====================
+//Verificación role
+//=====================
+/**
+ * Función medianrte la que verificamos el role del usuario que esta validado en la aplicación
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+let verificaAdmin_Role = (req, res, next) => {
+
+    let usuario = req.usuario;
+
+    if (usuario.role === 'ADMIN_ROLE') {
+        next();
+    } else {
+        return res.json({
+            ok: false,
+            err: {
+                message: 'El usuario no es administrador'
+            }
+        });
+    }
+}
+
 //Exportamos la funciones
 module.exports = {
-    verificaToken
+    verificaToken,
+    verificaAdmin_Role
 }

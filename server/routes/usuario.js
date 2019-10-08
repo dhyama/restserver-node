@@ -14,7 +14,7 @@ const _ = require('underscore');
 const Usuario = require('../models/usuario'); //Por convención se pone en mayuscula ya que vamos a generar objetos con new
 
 //Importamos la funcionalidad de verificación de tokens, podemos importar la libreria al completo como en la linea de arriba, o solo la función que queremos como en este caso
-const { verificaToken } = require('../middlewares/autenticacion');
+const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticacion');
 
 //Creamos la constante donde almacenaremos el servicio REST de la librería Express
 const app = express();
@@ -66,7 +66,7 @@ app.get('/usuario', verificaToken, (req, res) => { //En el segundo parámetro es
 /**
  * Controlador mediante la que creamos un registro de usuario de la BD
  */
-app.post('/usuario', verificaToken, (req, res) => {
+app.post('/usuario', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
     let usuarioLogin = {
@@ -108,7 +108,7 @@ app.post('/usuario', verificaToken, (req, res) => {
 /**
  * Controlador mediante la que actualizamos un registro de usuario de la BD
  */
-app.put('/usuario/:id', verificaToken, (req, res) => {
+app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
     let usuarioLogin = {
@@ -152,7 +152,7 @@ app.put('/usuario/:id', verificaToken, (req, res) => {
 /**
  * Controlador mediante el que marcamos como borrado un registro de usuario de la BD
  */
-app.delete('/usuario/:id', verificaToken, (req, res) => {
+app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
     let usuarioLogin = {
@@ -190,7 +190,7 @@ app.delete('/usuario/:id', verificaToken, (req, res) => {
 /**
  * Controlador mediante el que borramos físicamente un registro de usuario de la BD
  */
-app.delete('/usuario/:id/remove', verificaToken, (req, res) => {
+app.delete('/usuario/:id/remove', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     //Recogemos la información del usuario verificado en el token y que está trabajando con la aplicación
     let usuarioLogin = {
