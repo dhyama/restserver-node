@@ -101,4 +101,8 @@ npm install jsonwebtoken --save
 
     https://console.developers.google.com/apis/dashboard?authuser=0&project=dhyamasingin-1570524859327
 
+-Creamos una carpeta donde generar la interfaz grafica de la aplicación (Es independiente los que utilicemos Angular, React, etc)
+public/index.html
 
+-Instalamos la libreria para la validación mediante Sing-In de Google
+npm install google-auth-library --save
